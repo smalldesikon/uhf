@@ -1,0 +1,921 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+WindUI:Localization({
+    Enabled = true,
+    Prefix = "loc:",
+    DefaultLanguage = "ru",
+    Translations = {
+        ["ru"] = {
+            ["WINDUI_EXAMPLE"] = "WindUI Пример",
+            ["WELCOME"] = "Добро пожаловать в WindUI!",
+            ["LIB_DESC"] = "Библиотека для создания красивых интерфейсов",
+            ["SETTINGS"] = "Настройки",
+            ["APPEARANCE"] = "Внешний вид",
+            ["FEATURES"] = "Функционал",
+            ["UTILITIES"] = "Инструменты",
+            ["UI_ELEMENTS"] = "UI Элементы",
+            ["CONFIGURATION"] = "Конфигурация",
+            ["SAVE_CONFIG"] = "Сохранить конфигурацию",
+            ["LOAD_CONFIG"] = "Загрузить конфигурацию",
+            ["THEME_SELECT"] = "Выберите тему",
+            ["TRANSPARENCY"] = "Прозрачность окна"
+        },
+        ["en"] = {
+            ["WINDUI_EXAMPLE"] = "WindUI Example",
+            ["WELCOME"] = "Welcome to WindUI!",
+            ["LIB_DESC"] = "Beautiful UI library for Roblox",
+            ["SETTINGS"] = "Settings",
+            ["APPEARANCE"] = "Appearance",
+            ["FEATURES"] = "Features",
+            ["UTILITIES"] = "Utilities",
+            ["UI_ELEMENTS"] = "UI Elements",
+            ["CONFIGURATION"] = "Configuration",
+            ["SAVE_CONFIG"] = "Save Configuration",
+            ["LOAD_CONFIG"] = "Load Configuration",
+            ["THEME_SELECT"] = "Select Theme",
+            ["TRANSPARENCY"] = "Window Transparency"
+        }
+    }
+})
+
+WindUI.TransparencyValue = 0.2
+WindUI:SetTheme("Dark")
+
+local function gradient(text, startColor, endColor)
+    local result = ""
+    for i = 1, #text do
+        local t = (i - 1) / (#text - 1)
+        local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
+        local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
+        local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
+        result = result .. string.format('<font color="rgb(%d,%d,%d)">%s</font>', r, g, b, text:sub(i, i))
+    end
+    return result
+end
+
+local Confirmed = false
+
+WindUI:Popup({
+    Title = gradient("RbScript Hub", Color3.fromHex("#6A11CB"), Color3.fromHex("#2575FC")),
+    Icon = "sparkles",
+    IconThemed = true,
+    Content = "欢迎使用混脚本！",
+    Buttons = {
+        {
+            Title = "取消",
+            Callback = function() end,
+            Variant = "Secondary",
+        },
+        {
+            Title = "确认",
+            Icon = "arrow-right",
+            Callback = function() Confirmed = true end,
+            Variant = "Primary",
+        }
+    }
+})
+
+repeat wait() until Confirmed
+
+local UserGui = Instance.new("ScreenGui", game.CoreGui)
+local UserLabel = Instance.new("TextLabel", UserGui)
+local UIGradient = Instance.new("UIGradient")
+
+UserGui.Name = "UserGui"
+UserGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+UserGui.Enabled = true
+UserLabel.Name = "UserLabel"
+UserLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+UserLabel.BackgroundTransparency = 1
+UserLabel.BorderColor3 = Color3.new(0, 0, 0)
+UserLabel.Position = UDim2.new(0.80, 0.80, 0.00090, 0)
+UserLabel.Size = UDim2.new(0, 135, 0, 50)
+UserLabel.Font = Enum.Font.GothamSemibold
+UserLabel.Text = "尊敬的："..game.Players.LocalPlayer.Character.Name.."用户，欢迎使用混脚本！"
+UserLabel.TextColor3 = Color3.new(1, 1, 1)
+UserLabel.TextScaled = true
+UserLabel.TextSize = 14
+UserLabel.TextWrapped = true
+UserLabel.Visible = true
+
+UIGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(0.10, Color3.fromRGB(255, 127, 0)),
+    ColorSequenceKeypoint.new(0.20, Color3.fromRGB(255, 255, 0)),
+    ColorSequenceKeypoint.new(0.30, Color3.fromRGB(0, 255, 0)),
+    ColorSequenceKeypoint.new(0.40, Color3.fromRGB(0, 255, 255)),
+    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 0, 255)),
+    ColorSequenceKeypoint.new(0.60, Color3.fromRGB(139, 0, 255)),
+    ColorSequenceKeypoint.new(0.70, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(0.80, Color3.fromRGB(255, 127, 0)),
+    ColorSequenceKeypoint.new(0.90, Color3.fromRGB(255, 255, 0)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))
+}
+UIGradient.Rotation = 10
+UIGradient.Parent = UserLabel
+
+local TweenService = game:GetService("TweenService")
+local tweeninfo = TweenInfo.new(7, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+local tween = TweenService:Create(UIGradient, tweeninfo, {Rotation = 360})
+tween:Play()
+
+local Window = WindUI:CreateWindow({
+    Title = "混脚本 - 99 Night in the Forest",
+    Icon = "rbxassetid://105933835532108",
+    Author = "混脚本",
+    Folder = "混脚本",
+    Size = UDim2.fromOffset(720, 500),
+    Theme = "Dark",
+    Background = WindUI:Gradient({
+        ["0"] = { Color = Color3.fromHex("#0f0c29"), Transparency = 1 },
+        ["100"] = { Color = Color3.fromHex("#302b63"), Transparency = 0.9 },
+    }, {
+        Rotation = 45,
+    }),
+    Background = "rbxassetid://133155269071576",
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            WindUI:Notify({
+                Title = "您的用户ID：",
+                Content = (game:GetService("Players").LocalPlayer.UserId),
+                Duration = 3
+            })
+        end
+    },
+    SideBarWidth = 220,
+    HideSearchBar = false,
+    ScrollBarEnabled = true
+})
+
+Window:Tag({
+    Title = "v7.9.2",
+    Color = Color3.fromHex("#30ff6a")
+})
+
+Window:CreateTopbarButton("theme-switcher", "moon", function()
+    WindUI:SetTheme(WindUI:GetCurrentTheme() == "Dark" and "Light" or "Dark")
+    WindUI:Notify({
+        Title = "主题已切换",
+        Content = "当前主题: "..WindUI:GetCurrentTheme(),
+        Duration = 2
+    })
+end, 990)
+
+local Tabs = {
+    Main = Window:Section({ Title = "通用", Opened = true }),
+    Player = Window:Section({ Title = "玩家功能", Opened = true }),
+    Game = Window:Section({ Title = "游戏功能", Opened = true }),
+    Teleport = Window:Section({ Title = "传送功能", Opened = true }),
+    Esp = Window:Section({ Title = "透视功能", Opened = true }),
+    Bring = Window:Section({ Title = "物品收集", Opened = true }),
+    Misc = Window:Section({ Title = "其他功能", Opened = true }),
+    Settings = Window:Section({ Title = "UI设置", Opened = true })
+}
+
+local TabHandles = {
+    Info = Tabs.Main:Tab({ Title = "游戏信息", Icon = "info" }),
+    Movement = Tabs.Player:Tab({ Title = "移动设置", Icon = "user" }),
+    Visual = Tabs.Player:Tab({ Title = "视觉设置", Icon = "eye" }),
+    AutoFarm = Tabs.Game:Tab({ Title = "自动功能", Icon = "settings" }),
+    Combat = Tabs.Game:Tab({ Title = "战斗功能", Icon = "target" }),
+    Items = Tabs.Teleport:Tab({ Title = "物品传送", Icon = "package" }),
+    Locations = Tabs.Teleport:Tab({ Title = "位置传送", Icon = "map-pin" }),
+    PlayerEsp = Tabs.Esp:Tab({ Title = "玩家透视", Icon = "users" }),
+    ItemEsp = Tabs.Esp:Tab({ Title = "物品透视", Icon = "package" }),
+    EnemyEsp = Tabs.Esp:Tab({ Title = "敌人透视", Icon = "alert-triangle" }),
+    Collect = Tabs.Bring:Tab({ Title = "物品收集", Icon = "download" }),
+    Utility = Tabs.Misc:Tab({ Title = "实用功能", Icon = "tool" }),
+    Performance = Tabs.Misc:Tab({ Title = "性能优化", Icon = "zap" }),
+    Appearance = Tabs.Settings:Tab({ Title = "UI外观", Icon = "palette" })
+}
+
+-- 游戏信息标签
+TabHandles.Info:Paragraph({
+    Title = "您的游戏名称：",
+    Desc = ""..game:GetService("Players").LocalPlayer.DisplayName.."",
+    Buttons = {
+        {
+            Title = "复制名称",
+            Icon = "copy",
+            Variant = "Primary",
+            Callback = function() 
+                setclipboard(game:GetService("Players").LocalPlayer.DisplayName)
+                WindUI:Notify({
+                    Title = "混脚本---提示：",
+                    Content = "已成功复制！",
+                    Icon = "bell",
+                    Duration = 5
+                })
+            end
+        },
+    }
+})
+
+TabHandles.Info:Paragraph({
+    Title = "您的游戏用户名：",
+    Desc = ""..game:GetService("Players").LocalPlayer.Name.."",
+    Buttons = {
+        {
+            Title = "复制用户名",
+            Icon = "copy",
+            Variant = "Primary",
+            Callback = function() 
+                setclipboard(game:GetService("Players").LocalPlayer.Name)
+                WindUI:Notify({
+                    Title = "混脚本---提示：",
+                    Content = "已成功复制！",
+                    Icon = "bell",
+                    Duration = 5
+                })
+            end
+        },
+    }
+})
+
+TabHandles.Info:Paragraph({
+    Title = "您所在的服务器名称：",
+    Desc = ""..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."",
+    Buttons = {
+        {
+            Title = "复制服务器名称",
+            Icon = "copy",
+            Variant = "Primary",
+            Callback = function() 
+                setclipboard(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
+                WindUI:Notify({
+                    Title = "混脚本---提示：",
+                    Content = "已成功复制！",
+                    Icon = "bell",
+                    Duration = 5
+                })
+            end
+        },
+    }
+})
+
+-- 移动设置
+local speedSlider = TabHandles.Movement:Slider({
+    Title = "玩家速度",
+    Desc = "调整移动速度",
+    Value = { Min = 0, Max = 500, Default = 16 },
+    Callback = function(s)
+        local player = game.Players.LocalPlayer
+        local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = s
+        end
+    end
+})
+
+local jumpSlider = TabHandles.Movement:Slider({
+    Title = "玩家跳跃",
+    Desc = "调整跳跃高度",
+    Value = { Min = 0, Max = 500, Default = 50 },
+    Callback = function(value)
+        local player = game.Players.LocalPlayer
+        local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = value
+        end
+    end
+})
+
+local gravitySlider = TabHandles.Movement:Slider({
+    Title = "玩家重力",
+    Desc = "调整重力大小",
+    Value = { Min = 0, Max = 1000, Default = 196 },
+    Callback = function(value)
+        game.Workspace.Gravity = value
+    end
+})
+
+TabHandles.Movement:Button({
+    Title = "飞行",
+    Desc = "启用飞行功能",
+    Icon = "feather",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/CPSm1udG"))()
+        WindUI:Notify({
+            Title = "混脚本：",
+            Content = "成功加载飞行功能",
+            Icon = "bell",
+            Duration = 3
+        })
+    end
+})
+
+local noclipEnabled = false
+local noclipConnection
+
+TabHandles.Movement:Toggle({
+    Title = "穿墙模式",
+    Desc = "可以穿过墙壁和物体",
+    Value = false,
+    Callback = function(state)
+        noclipEnabled = state
+        if state then
+            noclipConnection = game:GetService("RunService").Stepped:Connect(function()
+                local Character = game.Players.LocalPlayer.Character
+                if Character then
+                    for _, part in pairs(Character:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                end
+            end)
+        else
+            if noclipConnection then
+                noclipConnection:Disconnect()
+                noclipConnection = nil
+            end
+        end
+    end
+})
+
+-- 视觉设置
+local nightVisionToggle = TabHandles.Visual:Toggle({
+    Title = "夜视",
+    Desc = "提高游戏亮度",
+    Value = false,
+    Callback = function(state) 
+        if state then
+            game.Lighting.Ambient = Color3.new(1, 1, 1)
+        else
+            game.Lighting.Ambient = Color3.new(0, 0, 0)
+        end
+        WindUI:Notify({
+            Title = "混脚本：",
+            Content = state and "夜视已开启" or "夜视已关闭",
+            Icon = state and "check" or "x",
+            Duration = 2
+        })
+    end
+})
+
+TabHandles.Visual:Button({
+    Title = "去雾",
+    Desc = "一键去除游戏中的雾",
+    Icon = "eye",
+    Callback = function()
+        local c = game.Lighting
+        c.FogEnd = 100000
+        for _, v in pairs(c:GetDescendants()) do
+            if v:IsA("Atmosphere") then
+                v:Destroy()
+            end
+        end
+        WindUI:Notify({
+            Title = "混脚本：",
+            Content = "已去除雾气",
+            Icon = "bell",
+            Duration = 3
+        })
+    end
+})
+
+-- 自动功能
+local infHungerActive = false
+local infHungerThread
+
+TabHandles.AutoFarm:Toggle({
+    Title = "无限饥饿度",
+    Desc = "保持饥饿度不下降",
+    Default = false,
+    Callback = function(state)
+        infHungerActive = state
+        if state then
+            infHungerThread = task.spawn(function()
+                local ReplicatedStorage = game:GetService("ReplicatedStorage")
+                local RequestConsumeItem = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("RequestConsumeItem")
+                while infHungerActive do
+                    local args = { Instance.new("Model", nil) }
+                    pcall(function() RequestConsumeItem:InvokeServer(unpack(args)) end)
+                    task.wait(1)
+                end
+            end)
+        else
+            if infHungerThread then
+                task.cancel(infHungerThread)
+                infHungerThread = nil
+            end
+        end
+    end
+})
+
+local autoTreeFarmActive = false
+local autoTreeFarmThread
+
+TabHandles.AutoFarm:Toggle({
+    Title = "自动砍树",
+    Desc = "自动砍伐树木",
+    Default = false,
+    Callback = function(state)
+        autoTreeFarmActive = state
+        if state then
+            autoTreeFarmThread = task.spawn(function()
+                local ReplicatedStorage = game:GetService("ReplicatedStorage")
+                local ToolDamageObject = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("ToolDamageObject")
+                local Players = game:GetService("Players")
+                local LocalPlayer = Players.LocalPlayer
+                local Backpack = LocalPlayer:WaitForChild("Backpack")
+
+                local function getAllTrees()
+                    local map = workspace:FindFirstChild("Map")
+                    if not map then return {} end
+                    local landmarks = map:FindFirstChild("Landmarks") or map:FindFirstChild("Foliage")
+                    if not landmarks then return {} end
+                    local trees = {}
+                    for _, tree in ipairs(landmarks:GetChildren()) do
+                        if tree.Name == "Small Tree" and tree:IsA("Model") and tree.Parent then
+                            local trunk = tree:FindFirstChild("Trunk") or tree.PrimaryPart
+                            if trunk then
+                                table.insert(trees, {tree = tree, trunk = trunk})
+                            end
+                        end
+                    end
+                    return trees
+                end
+
+                local function getAxe()
+                    local inv = LocalPlayer:FindFirstChild("Inventory")
+                    if not inv then return nil end
+                    return inv:FindFirstChild("Old Axe") or inv:FindFirstChildWhichIsA("Tool")
+                end
+
+                while autoTreeFarmActive do
+                    local trees = getAllTrees()
+                    for _, t in ipairs(trees) do
+                        if not autoTreeFarmActive then break end
+                        if t.tree and t.tree.Parent then
+                            local char = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+                            local hrp = char:FindFirstChild("HumanoidRootPart", 3)
+                            if hrp and t.trunk then
+                                local treeCFrame = t.trunk.CFrame
+                                local rightVector = treeCFrame.RightVector
+                                local targetPosition = treeCFrame.Position + rightVector * 3
+                                hrp.CFrame = CFrame.new(targetPosition)
+                                task.wait(0.25)
+                                local axe = getAxe()
+                                if axe then
+                                    if axe.Parent == Backpack then
+                                        axe.Parent = char
+                                        task.wait(0.15)
+                                    end
+                                    while t.tree.Parent and autoTreeFarmActive do
+                                        pcall(function() axe:Activate() end)
+                                        local args = { t.tree, axe, "1_8264699301", t.trunk.CFrame }
+                                        pcall(function() ToolDamageObject:InvokeServer(unpack(args)) end)
+                                        task.wait(1)
+                                    end
+                                end
+                            end
+                        end
+                        task.wait(0.5)
+                    end
+                    task.wait(1)
+                end
+            end)
+        else
+            if autoTreeFarmThread then
+                task.cancel(autoTreeFarmThread)
+                autoTreeFarmThread = nil
+            end
+        end
+    end
+})
+
+-- 战斗功能
+local hitboxSettings = {
+    Wolf = false,
+    Bunny = false,
+    Cultist = false,
+    All = false,
+    Show = false,
+    Size = 10
+}
+
+local function updateHitboxForModel(model)
+    local root = model:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+    local name = model.Name:lower()
+
+    if hitboxSettings.All then
+        root.Size = Vector3.new(hitboxSettings.Size, hitboxSettings.Size, hitboxSettings.Size)
+        root.Transparency = hitboxSettings.Show and 0.5 or 1
+        root.Color = Color3.fromRGB(255, 255, 255)
+        root.Material = Enum.Material.Neon
+        root.CanCollide = false
+        return
+    end
+
+    local shouldResize =
+        (hitboxSettings.Wolf and (name:find("wolf") or name:find("alpha"))) or
+        (hitboxSettings.Bunny and name:find("bunny")) or
+        (hitboxSettings.Cultist and (name:find("cultist") or name:find("cross")))
+
+    if shouldResize then
+        root.Size = Vector3.new(hitboxSettings.Size, hitboxSettings.Size, hitboxSettings.Size)
+        root.Transparency = hitboxSettings.Show and 0.5 or 1
+        root.Color = Color3.fromRGB(255, 255, 255)
+        root.Material = Enum.Material.Neon
+        root.CanCollide = false
+    end
+end
+
+task.spawn(function()
+    while true do
+        for _, model in ipairs(workspace:GetDescendants()) do
+            if model:IsA("Model") and model:FindFirstChild("HumanoidRootPart") then
+                updateHitboxForModel(model)
+            end
+        end
+        task.wait(2)
+    end
+end)
+
+TabHandles.Combat:Toggle({Title="扩大狼命中框", Default=false, Callback=function(val) hitboxSettings.Wolf=val end})
+TabHandles.Combat:Toggle({Title="扩大兔子命中框", Default=false, Callback=function(val) hitboxSettings.Bunny=val end})
+TabHandles.Combat:Toggle({Title="扩大邪教徒命中框", Default=false, Callback=function(val) hitboxSettings.Cultist=val end})
+TabHandles.Combat:Toggle({Title="扩大所有命中框", Default=false, Callback=function(val) hitboxSettings.All=val end})
+TabHandles.Combat:Slider({Title="命中框大小", Value={Min=2, Max=250, Default=10}, Step=1, Callback=function(val) hitboxSettings.Size=val end})
+TabHandles.Combat:Toggle({Title="显示命中框", Default=false, Callback=function(val) hitboxSettings.Show=val end})
+
+-- 透视功能
+local function CreateEsp(Char, Color, Text, Parent, numberOffset)
+    if not Char then return end
+    KeepEsp(Char, Parent)
+
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "ESP_Highlight"
+    highlight.Adornee = Char
+    highlight.FillColor = Color
+    highlight.FillTransparency = 1
+    highlight.OutlineColor = Color
+    highlight.OutlineTransparency = 0
+    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    highlight.Enabled = true
+    highlight.Parent = Char
+
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "ESP"
+    billboard.Size = UDim2.new(0, 50, 0, 25)
+    billboard.AlwaysOnTop = true
+    billboard.StudsOffset = Vector3.new(0, numberOffset or 3, 0)
+    billboard.Adornee = Parent
+    billboard.Enabled = true
+    billboard.Parent = Parent
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, 0, 1, 0)
+    label.BackgroundTransparency = 1
+    label.Text = Text
+    label.TextColor3 = Color
+    label.TextScaled = true
+    label.Parent = billboard
+end
+
+local function KeepEsp(Char, Parent)
+    if Char then
+        local highlight = Char:FindFirstChildOfClass("Highlight")
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    if Parent then
+        local billboard = Parent:FindFirstChildOfClass("BillboardGui")
+        if billboard then
+            billboard:Destroy()
+        end
+    end
+end
+
+local ActiveEspPlayer = false
+local ActiveEspItems = false
+local ActiveEspEnemy = false
+local ActiveEspChildren = false
+
+TabHandles.PlayerEsp:Toggle({
+    Title = "玩家透视",
+    Default = false,
+    Callback = function(state)
+        ActiveEspPlayer = state
+        task.spawn(function()
+            while ActiveEspPlayer do
+                for _, player in pairs(game.Players:GetPlayers()) do
+                    if player ~= game.Players.LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        local char = player.Character
+                        if not char:FindFirstChildOfClass("Highlight") and not char.HumanoidRootPart:FindFirstChildOfClass("BillboardGui") then
+                            CreateEsp(char, Color3.fromRGB(0, 255, 0), player.Name, char.HumanoidRootPart, 2)
+                        end
+                    end
+                end
+                task.wait(0.1)
+            end
+            for _, player in pairs(game.Players:GetPlayers()) do
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    local char = player.Character
+                    KeepEsp(char, char.HumanoidRootPart)
+                end
+            end
+        end)
+    end
+})
+
+TabHandles.ItemEsp:Toggle({
+    Title = "物品透视",
+    Default = false,
+    Callback = function(state)
+        ActiveEspItems = state
+        task.spawn(function()
+            while ActiveEspItems do
+                for _, Obj in pairs(game.Workspace.Items:GetChildren()) do
+                    if Obj:IsA("Model") and Obj.PrimaryPart and not Obj:FindFirstChildOfClass("Highlight") and not Obj.PrimaryPart:FindFirstChildOfClass("BillboardGui") then
+                        CreateEsp(Obj, Color3.fromRGB(255, 255, 0), Obj.Name, Obj.PrimaryPart, 2)
+                    end
+                end
+                task.wait(0.1)
+            end
+            for _, Obj in pairs(game.Workspace.Items:GetChildren()) do
+                KeepEsp(Obj, Obj.PrimaryPart)
+            end
+        end)
+    end
+})
+
+TabHandles.EnemyEsp:Toggle({
+    Title = "敌人透视",
+    Default = false,
+    Callback = function(state)
+        ActiveEspEnemy = state
+        task.spawn(function()
+            while ActiveEspEnemy do
+                for _, Obj in pairs(game.Workspace.Characters:GetChildren()) do
+                    if Obj:IsA("Model") and Obj.PrimaryPart and (Obj.Name ~= "Lost Child" and Obj.Name ~= "Lost Child2" and Obj.Name ~= "Lost Child3" and Obj.Name ~= "Lost Child4" and Obj.Name ~= "Pelt Trader") and not Obj:FindFirstChildOfClass("Highlight") and not Obj.PrimaryPart:FindFirstChildOfClass("BillboardGui") then
+                        CreateEsp(Obj, Color3.fromRGB(255, 0, 0), Obj.Name, Obj.PrimaryPart, 2)
+                    end
+                end
+                task.wait(0.1)
+            end
+            for _, Obj in pairs(game.Workspace.Characters:GetChildren()) do
+                KeepEsp(Obj, Obj.PrimaryPart)
+            end
+        end)
+    end
+})
+
+TabHandles.EnemyEsp:Toggle({
+    Title = "儿童透视",
+    Default = false,
+    Callback = function(state)
+        ActiveEspChildren = state
+        task.spawn(function()
+            while ActiveEspChildren do
+                for _, Obj in pairs(game.Workspace.Characters:GetChildren()) do
+                    if Obj:IsA("Model") and Obj.PrimaryPart and (Obj.Name == "Lost Child" or Obj.Name == "Lost Child2" or Obj.Name == "Lost Child3" or Obj.Name == "Lost Child4") and not Obj:FindFirstChildOfClass("Highlight") and not Obj.PrimaryPart:FindFirstChildOfClass("BillboardGui") then
+                        CreateEsp(Obj, Color3.fromRGB(0, 255, 0), Obj.Name, Obj.PrimaryPart, 2)
+                    end
+                end
+                task.wait(0.1)
+            end
+            for _, Obj in pairs(game.Workspace.Characters:GetChildren()) do
+                KeepEsp(Obj, Obj.PrimaryPart)
+            end
+        end)
+    end
+})
+
+-- 传送功能
+local function TeleportToThing(thing)
+    local LP = game.Players.LocalPlayer
+    local character = LP.Character or LP.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj:IsA("Model") and obj.Name == thing then
+            local part = obj.PrimaryPart or obj:FindFirstChildWhichIsA("BasePart")
+            if part then
+                humanoidRootPart.CFrame = part.CFrame * CFrame.new(0, 2, 0)
+                return true
+            end
+        end
+    end
+    return false
+end
+
+TabHandles.Locations:Button({
+    Title="传送到营地",
+    Callback=function()
+        local char = game.Players.LocalPlayer.Character
+        if char and char:FindFirstChild("HumanoidRootPart") then
+            char.HumanoidRootPart.CFrame = CFrame.new(13.287363052368164, 3.999999761581421, 0.36212217807769775)
+        end
+    end
+})
+
+TabHandles.Locations:Button({
+    Title="传送到商人",
+    Callback=function()
+        local pos = Vector3.new(-37.08, 3.98, -16.33)
+        local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+        local hrp = character:WaitForChild("HumanoidRootPart")
+        hrp.CFrame = CFrame.new(pos)
+    end
+})
+
+-- 物品传送
+local itemCategories = {
+    ["武器"] = {"Revolver", "Rifle", "Revolver Ammo", "Rifle Ammo"},
+    ["防具"] = {"Leather Body", "Iron Body", "Thorn Body"},
+    ["食物"] = {"Carrot", "Berry", "Morsel", "Steak", "Cooked Morsel", "Cooked Steak"},
+    ["医疗"] = {"Bandage", "MedKit"},
+    ["材料"] = {"Bolt", "Sheet Metal", "Old Radio", "Broken Fan", "Broken Microwave"},
+    ["燃料"] = {"Log", "Chair", "Coal", "Fuel Canister", "Oil Barrel"}
+}
+
+for categoryName, items in pairs(itemCategories) do
+    TabHandles.Items:Paragraph({
+        Title = categoryName
+    })
+    
+    for _, itemName in ipairs(items) do
+        TabHandles.Items:Button({
+            Title = itemName,
+            Icon = "package",
+            Callback = function()
+                TeleportToThing(itemName)
+                WindUI:Notify({
+                    Title = "混脚本：",
+                    Content = "已传送至" .. itemName .. "位置",
+                    Icon = "bell",
+                    Duration = 3
+                })
+            end
+        })
+    end
+end
+
+-- 物品收集
+local function bringItemsByName(name)
+    local root = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+
+    for _, item in ipairs(workspace.Items:GetChildren()) do
+        if item.Name:lower():find(name:lower()) then
+            local part = item:FindFirstChildWhichIsA("BasePart") or (item:IsA("BasePart") and item)
+            if part then
+                part.CFrame = root.CFrame + Vector3.new(0, 3, 0) + root.CFrame.LookVector * 5
+            end
+        end
+    end
+end
+
+TabHandles.Collect:Button({Title="收集所有物品", Callback=function()
+    for _, item in ipairs(workspace.Items:GetChildren()) do
+        local part = item:FindFirstChildWhichIsA("BasePart") or item:IsA("BasePart") and item
+        if part then
+            part.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(math.random(-44,44), 0, math.random(-44,44))
+        end
+    end
+end})
+
+local collectItems = {
+    "Log", "Fuel Canister", "Oil Barrel", "Coal", "Revolver", "Rifle", 
+    "Bandage", "MedKit", "Carrot", "Berry", "Morsel", "Steak"
+}
+
+for _, itemName in ipairs(collectItems) do
+    TabHandles.Collect:Button({
+        Title = "收集" .. itemName,
+        Callback = function() bringItemsByName(itemName) end
+    })
+end
+
+-- 实用功能
+local instantPrompt = false
+local connection
+
+TabHandles.Utility:Button({
+    Title = "瞬间互动",
+    Desc = "移除所有互动的等待时间",
+    Callback = function()
+        instantPrompt = not instantPrompt
+        if instantPrompt then
+            for _, prompt in ipairs(workspace:GetDescendants()) do
+                if prompt:IsA("ProximityPrompt") then
+                    prompt.HoldDuration = 0
+                end
+            end
+            if not connection then
+                connection = workspace.DescendantAdded:Connect(function(descendant)
+                    if descendant:IsA("ProximityPrompt") then
+                        descendant.HoldDuration = 0
+                    end
+                end)
+            end
+        else
+            for _, prompt in ipairs(workspace:GetDescendants()) do
+                if prompt:IsA("ProximityPrompt") then
+                    prompt.HoldDuration = 0.5
+                end
+            end
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
+        end
+    end
+})
+
+-- 性能优化
+TabHandles.Performance:Button({
+    Title = "FPS优化",
+    Desc = "提升游戏帧率",
+    Callback = function()
+        pcall(function()
+            settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+            local lighting = game:GetService("Lighting")
+            lighting.Brightness = 0
+            lighting.FogEnd = 100
+            lighting.GlobalShadows = false
+            lighting.EnvironmentDiffuseScale = 0
+            lighting.EnvironmentSpecularScale = 0
+            
+            for _, obj in ipairs(lighting:GetDescendants()) do
+                if obj:IsA("PostEffect") then
+                    obj.Enabled = false
+                end
+            end
+            
+            for _, obj in ipairs(game:GetDescendants()) do
+                if obj:IsA("ParticleEmitter") or obj:IsA("Trail") then
+                    obj.Enabled = false
+                end
+            end
+            
+            for _, part in ipairs(workspace:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CastShadow = false
+                end
+            end
+        end)
+        WindUI:Notify({
+            Title = "性能优化",
+            Content = "FPS优化已应用",
+            Icon = "zap",
+            Duration = 3
+        })
+    end
+})
+
+-- UI设置
+local themes = {}
+for themeName, _ in pairs(WindUI:GetThemes()) do
+    table.insert(themes, themeName)
+end
+table.sort(themes)
+
+local themeDropdown = TabHandles.Appearance:Dropdown({
+    Title = "主题选择",
+    Values = themes,
+    Value = "Dark",
+    Callback = function(theme)
+        WindUI:SetTheme(theme)
+        WindUI:Notify({
+            Title = "主题应用",
+            Content = theme,
+            Icon = "palette",
+            Duration = 2
+        })
+    end
+})
+
+local transparencySlider = TabHandles.Appearance:Slider({
+    Title = "透明度",
+    Value = { 
+        Min = 0,
+        Max = 1,
+        Default = 0.2,
+    },
+    Step = 0.1,
+    Callback = function(value)
+        Window:ToggleTransparency(tonumber(value) > 0)
+        WindUI.TransparencyValue = tonumber(value)
+    end
+})
+
+-- 防AFK
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+    game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+WindUI:Notify({
+    Title = "混脚本",
+    Content = "脚本加载完成！享受游戏吧！",
+    Icon = "check",
+    Duration = 5
+})
