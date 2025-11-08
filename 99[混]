@@ -121,7 +121,7 @@ tween:Play()
 
 local Window = WindUI:CreateWindow({
     Title = "混脚本 - 99夜",
-    Icon = "rbxassetid://109223169214001",
+    Icon = "rbxassetid://92940968211956",
     Author = "混脚本",
     Folder = "混脚本",
     Size = UDim2.fromOffset(720, 500),
@@ -132,7 +132,7 @@ local Window = WindUI:CreateWindow({
     }, {
         Rotation = 45,
     }),
-    Background = "rbxassetid://109223169214001",
+    Background = "rbxassetid://79578927585462",
     User = {
         Enabled = true,
         Anonymous = false,
