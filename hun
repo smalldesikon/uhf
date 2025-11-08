@@ -1,3 +1,9 @@
+game.StarterGui:SetCore("SendNotification", {Title = "通知", Text = "作者司空，WB.TX", Duration = 5})
+wait(1.5)
+game.StarterGui:SetCore("SendNotification", {Title = "通知", Text = "群聊已复制，加群获取最新消息", Duration = 6})
+local success = pcall(function() game:GetService("GuiService"):SetClipboardText("1043213309") end)
+if not success then wait(1.5) game.StarterGui:SetCore("SendNotification", {Title = "通知", Text = "群号：1043213309", Duration = 4}) end
+wait(3)
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 local Window = WindUI:CreateWindow({
