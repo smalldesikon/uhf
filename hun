@@ -60,6 +60,7 @@ local Tab8 = Tab("范围")
 local Tab9 = Tab("自瞄")
 local Tab10 = Tab("子追")
 local Tab11 = Tab("汉化器(by天下布武)")
+local Tab12 = Tab("被遗弃")
 
 Button(Tab1, "提升fps", function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/smalldesikon/hun/ee906e570c0f5b22e580a20decaba23757533569/fps"))()
@@ -884,4 +885,36 @@ end)
 
 Button(Tab11, "API翻译(by皮空)", function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/smalldesikon/eyidfki/ecca7e04b83299b86c5ce8af98762071cc5f346f/api%E7%BF%BB%E8%AF%91"))()
+end)
+
+Button(Tab12, "Bobby(汉化)", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/爱男娘.lua"))()
+end)
+
+Button(Tab12, "被遗弃不知名中文脚本1", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ZIONPCE/JB/refs/heads/main/Auto-backstab-two-time.lua"))()
+end)
+
+Button(Tab12, "被遗弃不知名中文脚本2", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Fartsaken.txt"))()
+end)
+
+Button(Tab12, "被遗弃不知名脚本3", function() 
+        loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/ivannetta/ShitScripts/refs/heads/main/forsaken.lua")))()
+end)
+
+Button(Tab12, "SNT", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/SNT.lua"))()
+end)
+
+Button(Tab12, "Saryn", function() 
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Saiky988/Saryn-Hub/refs/heads/main/Saryn%Hub%Beta.lua'))()
+end)
+
+Button(Tab12, "被遗弃不知名英文脚本4[卡密：meow]", function() 
+        loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/ivannetta/ShitScripts/refs/heads/main/forsaken.lua")))()
+end)
+
+Button(Tab12, "自称超强[英文]", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/who-else123/my-scripts/refs/heads/main/Syncsaken/main.lua"))()
 end)
