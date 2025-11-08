@@ -881,3 +881,7 @@ end)
 Button(Tab11, "翻译器(by天下布武)", function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Twbtx/tiamxiabuwu/main/han%20hua%20jiao%20ben"))()
 end)
+
+Button(Tab11, "API翻译(by皮空)", function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/smalldesikon/eyidfki/ecca7e04b83299b86c5ce8af98762071cc5f346f/api%E7%BF%BB%E8%AF%91"))()
+end)
