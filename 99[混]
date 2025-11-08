@@ -56,7 +56,7 @@ end
 local Confirmed = false
 
 WindUI:Popup({
-    Title = gradient("RbScript Hub", Color3.fromHex("#6A11CB"), Color3.fromHex("#2575FC")),
+    Title = gradient("hunScript", Color3.fromHex("#6A11CB"), Color3.fromHex("#2575FC")),
     Icon = "sparkles",
     IconThemed = true,
     Content = "欢迎使用混脚本！",
@@ -120,8 +120,8 @@ local tween = TweenService:Create(UIGradient, tweeninfo, {Rotation = 360})
 tween:Play()
 
 local Window = WindUI:CreateWindow({
-    Title = "混脚本 - 99 Night in the Forest",
-    Icon = "rbxassetid://105933835532108",
+    Title = "混脚本 - 99夜",
+    Icon = "rbxassetid://109223169214001",
     Author = "混脚本",
     Folder = "混脚本",
     Size = UDim2.fromOffset(720, 500),
@@ -132,7 +132,7 @@ local Window = WindUI:CreateWindow({
     }, {
         Rotation = 45,
     }),
-    Background = "rbxassetid://133155269071576",
+    Background = "rbxassetid://109223169214001",
     User = {
         Enabled = true,
         Anonymous = false,
