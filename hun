@@ -1044,18 +1044,6 @@ Button(Tab16, "Kalitor[汉化]", function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Kalitor.lua"))()
 end)
 
-Button(Tab17, "op级", function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ScripterVaz/InkGameAzure/main/Protected_7974105512464815.lua.txt"))()
-end)
-
-Button(Tab17, "TuffGuys", function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/TuffGuys/TuffGuys/refs/heads/main/Loader"))()
-end)
-
-Button(Tab17, "Ringta", function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%B1%89%E5%8C%96%E5%A2%A8%E6%B0%B4Ringta.txt"))()
-end)
-
 Button(Tab17, "不知名1", function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()
 end)
