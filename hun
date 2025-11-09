@@ -162,14 +162,6 @@ Button(Tab1, "反挂机v2", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
 end)
 
-Button(Tab1, "获得管理员权限", function() 
-    loadstring(game:HttpGet("https://pastebin.com/raw/sZpgTVas"))()
-end)
-
-Button(Tab1, "死亡笔记", function() 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/tt/main/%E6%AD%BB%E4%BA%A1%E7%AC%94%E8%AE%B0%20(1).txt"))()
-end)
-
 Button(Tab1, "汉化穿墙", function() 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TtmScripter/OtherScript/main/Noclip"))()
 end)
@@ -248,10 +240,6 @@ Button(Tab1, "透视2", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
 end)
 
-Button(Tab1, "无敌『不适用』", function() 
-    loadstring(game:HttpGet('https://pastebin.com/raw/H3RLCWWZ'))()
-end)
-
 Button(Tab1, "隐身（E）", function() 
     loadstring(game:HttpGet('https://pastebin.com/raw/nwGEvkez'))()
 end)
@@ -268,10 +256,6 @@ Button(Tab1, "fps显示", function()
     loadstring(game:HttpGet("https://pastefy.app/d9j82YJr/raw",true))()
 end)
 
-Button(Tab1, "解帧", function() 
-    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-FpsBoost-9260"))()
-end)
-
 Button(Tab1, "紫莎", function() 
     game.Players.LocalPlayer.Character.Humanoid.Health=0
 end)
@@ -283,10 +267,6 @@ end)
 Button(Tab1, "夜视仪", function() 
     _G.OnShop = true
     loadstring(game:HttpGet('https://raw.githubusercontent.com/DeividComSono/Scripts/main/Scanner.lua'))()
-end)
-
-Button(Tab1, "反挂机", function() 
-    loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
 end)
 
 Button(Tab1, "无限跳", function() 
@@ -301,7 +281,7 @@ Button(Tab1, "操人脚本", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/bzmhRgKL"))();
 end)
 
-Button(Tab1, "操b脚本", function() 
+Button(Tab1, "操b脚本[不可关闭谨慎开启]", function() 
     local SimpleSexGUI = Instance.new("ScreenGui") 
     local FGUI = Instance.new("Frame") 
     local btnNaked = Instance.new("TextButton") 
