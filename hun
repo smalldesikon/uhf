@@ -1099,7 +1099,7 @@ Button(Tab19, "白脚本[破解]", function()
 end)
 
 Button(Tab19, "kg脚本", function() 
-        KG_SCRIPT = "KG TEAM"loadstring(game:HttpGet(https://raw.github.com/520-Ghost/-/main/KG.lua))()
+        KG_SCRIPT = "张硕制作"loadstring(game:HttpGet("https://github.com/ZS-NB/KG/raw/main/Zhang-Shuo.lua"))()
 end)
 
 Button(Tab19, "TX退休脚本", function() 
