@@ -1155,7 +1155,7 @@ Button(Tab19, "神光", function()
 end)
 
 Button(Tab19, "禁漫中心", function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/anlushanjinchangantangwanle/main/jmghjkknsbdbskkakwbebnfshdhhcyvtbrvrshwbshhshshsgsvsb.lua"))()
+        getgenv().lishichuan="禁漫中心1001390385" loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/anlushanjinchangantangwanle/main/jmjmjmjmjmjmjmjmjmjmjmjmjmjmjmjm.lua"))()
 end)
 
 Button(Tab19, "龙脚本", function() 
