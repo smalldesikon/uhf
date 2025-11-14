@@ -296,7 +296,7 @@ TabHandles.Movement:Button({
     Desc = "启用飞行功能",
     Icon = "feather",
     Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/CPSm1udG"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Twbtx/tiamxiabuwu/main/t%20x%20b%20w%20fly"))()
         WindUI:Notify({
             Title = "混脚本：",
             Content = "成功加载飞行功能",
