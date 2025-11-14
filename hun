@@ -1072,10 +1072,6 @@ Button(Tab19, "德与中山破解版", function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/eksan966/Deyu-Zhongshan/refs/heads/main/pojieban"))()
 end)
 
-Button(Tab19, "贱客破解版", function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/eksan966/Sword_Guest/refs/heads/main/VIP"))()
-end)
-
 Button(Tab19, "皮脚本", function() 
         getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
 end)
@@ -1090,7 +1086,9 @@ end)
 
 Button(Tab19, "x脚本", function() 
         X_SCRIPT = "XXXXXX"loadstring(game:HttpGet("https://raw.githubusercontent.com/XSCRIPT-NB/XSCRIPT/refs/heads/main/X-SCRIPT"))()
-end)Button(Tab19, "飞天剑云脚本", function() 
+end)
+
+Button(Tab19, "飞天剑云脚本", function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/sjshhs666/robloxd/e4d17b9237583569caf3b8601bc3921224b4cfc9/99%E5%A4%9C"))()
 end)
 
